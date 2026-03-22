@@ -10,6 +10,7 @@
 	],
 	"client": [
 		"client.DrawContextMixin",
+		"client.HandledScreenMixin",
 		"client.ScreenMixin"
 	],
 	"injectors": {

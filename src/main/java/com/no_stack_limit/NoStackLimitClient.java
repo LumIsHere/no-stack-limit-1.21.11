@@ -2,6 +2,7 @@ package com.no_stack_limit;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.util.Identifier;
@@ -21,6 +22,24 @@ public class NoStackLimitClient implements ClientModInitializer {
     }
 
     public static boolean shouldShowExactCount() {
-        return showExactCountKeyBinding != null && showExactCountKeyBinding.isPressed();
+        if (showExactCountKeyBinding == null) {
+            return false;
+        }
+
+        if (showExactCountKeyBinding.isPressed()) {
+            return true;
+        }
+
+        MinecraftClient client = MinecraftClient.getInstance();
+        if (client == null || client.getWindow() == null) {
+            return false;
+        }
+
+        InputUtil.Key boundKey = KeyBindingHelper.getBoundKeyOf(showExactCountKeyBinding);
+        if (boundKey.getCategory() == InputUtil.Type.KEYSYM || boundKey.getCategory() == InputUtil.Type.SCANCODE) {
+            return InputUtil.isKeyPressed(client.getWindow(), boundKey.getCode());
+        }
+
+        return false;
     }
 }
