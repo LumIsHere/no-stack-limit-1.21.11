@@ -1,0 +1,5 @@
+{
+  "key.category.no_stack_limit.controls": "Безъ ограниченія стопки",
+  "key.no_stack_limit.show_exact_count": "Показать точное число въ стопкѣ",
+  "tooltip.no_stack_limit.exact_count": "Предметы въ стопкѣ: %s"
+}

@@ -1,0 +1,5 @@
+{
+  "key.category.no_stack_limit.controls": "无堆叠限制",
+  "key.no_stack_limit.show_exact_count": "显示精确堆叠数量",
+  "tooltip.no_stack_limit.exact_count": "堆叠物品: %s"
+}

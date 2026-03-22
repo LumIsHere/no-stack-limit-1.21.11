@@ -1,0 +1,5 @@
+{
+  "key.category.no_stack_limit.controls": "Стек чектөөсүз",
+  "key.no_stack_limit.show_exact_count": "Так стек санын көрсөтүү",
+  "tooltip.no_stack_limit.exact_count": "Стектелген буюмдар: %s"
+}

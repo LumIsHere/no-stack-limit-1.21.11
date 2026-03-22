@@ -1,0 +1,5 @@
+{
+  "key.category.no_stack_limit.controls": "بدون حد للكومة",
+  "key.no_stack_limit.show_exact_count": "إظهار العدد الدقيق في الكومة",
+  "tooltip.no_stack_limit.exact_count": "العناصر المكدسة: %s"
+}
