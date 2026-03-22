@@ -1,0 +1,5 @@
+{
+  "key.category.no_stack_limit.controls": "அடுக்கு வரம்பு இல்லை",
+  "key.no_stack_limit.show_exact_count": "சரியான அடுக்கு எண்ணிக்கையைக் காட்டு",
+  "tooltip.no_stack_limit.exact_count": "அடுக்கப்பட்ட பொருட்கள்: %s"
+}
