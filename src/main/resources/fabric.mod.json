@@ -1,0 +1,30 @@
+{
+	"schemaVersion": 1,
+	"id": "no_stack_limit",
+	"version": "${version}",
+	"name": "No Stack Limit",
+	"description": "Expands stack limit to 2147483647",
+	"authors": [
+		"Lum Chan"
+	],
+	"license": "MIT",
+	"icon": "assets/no_stack_limit/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.no_stack_limit.NoStackLimit"
+		],
+        "client": [
+            "com.no_stack_limit.NoStackLimitClient"
+        ]
+	},
+	"mixins": [
+		"no_stack_limit.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.18.4",
+		"minecraft": "~1.21.11",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}

@@ -1,0 +1,5 @@
+{
+  "key.categories.no_stack_limit.controls": "No Stack Limit",
+  "key.no_stack_limit.show_exact_count": "Show exact stack count",
+  "tooltip.no_stack_limit.exact_count": "Exact amount: %s"
+}
