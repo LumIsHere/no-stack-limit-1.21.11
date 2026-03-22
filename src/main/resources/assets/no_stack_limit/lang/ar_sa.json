@@ -1,5 +1,5 @@
 {
-    "key.category.no_stack_limit.controls":  "Ø¨Ø¯ÙˆÙ† Ø­Ø¯ Ù„Ù„ÙƒÙˆÙ…Ø©",
-    "key.no_stack_limit.show_exact_count":  "Ø¥Ø¸Ù‡Ø§Ø± Ø§Ù„Ø¹Ø¯Ø¯ Ø§Ù„Ø¯Ù‚ÙŠÙ‚ ÙÙŠ Ø§Ù„ÙƒÙˆÙ…Ø©",
-    "tooltip.no_stack_limit.exact_count":  "Ø§Ù„Ø¹Ù†Ø§ØµØ± Ø§Ù„Ù…ÙƒØ¯Ø³Ø©: %s"
+  "key.category.no_stack_limit.controls": "لا حد للكومة",
+  "key.no_stack_limit.show_exact_count": "إظهار العدد الدقيق في الكومة",
+  "tooltip.no_stack_limit.exact_count": "العناصر المكدسة: %s"
 }
