@@ -10,8 +10,7 @@
 	],
 	"client": [
 		"client.DrawContextMixin",
-		"client.HandledScreenMixin",
-		"client.ScreenMixin"
+		"client.HandledScreenMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
