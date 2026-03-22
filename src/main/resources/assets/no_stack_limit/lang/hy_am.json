@@ -1,5 +1,5 @@
 {
-    "key.category.no_stack_limit.controls":  "No Stack Limit",
-    "key.no_stack_limit.show_exact_count":  "Show exact stack count",
-    "tooltip.no_stack_limit.exact_count":  "Stacked Items: %s"
+  "key.category.no_stack_limit.controls": "Առանց Կույտի Սահմանափակման",
+  "key.no_stack_limit.show_exact_count": "Ցույց տալ կույտի ճշգրիտ քանակը",
+  "tooltip.no_stack_limit.exact_count": "Դիզած Իրեր: %s"
 }

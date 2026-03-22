@@ -1,5 +1,5 @@
 {
-    "key.category.no_stack_limit.controls":  "No Stack Limit",
-    "key.no_stack_limit.show_exact_count":  "Show exact stack count",
-    "tooltip.no_stack_limit.exact_count":  "Stacked Items: %s"
+  "key.category.no_stack_limit.controls": "कोई स्टैक सीमा नहीं",
+  "key.no_stack_limit.show_exact_count": "सटीक स्टैक संख्या दिखाएं",
+  "tooltip.no_stack_limit.exact_count": "स्टैक की गई वस्तुएं: %s"
 }

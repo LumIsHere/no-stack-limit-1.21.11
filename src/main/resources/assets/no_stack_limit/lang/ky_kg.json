@@ -1,5 +1,5 @@
 {
-    "key.category.no_stack_limit.controls":  "Ð¡Ñ‚ÐµÐº Ñ‡ÐµÐºÑ‚Ó©Ó©ÑÒ¯Ð·",
-    "key.no_stack_limit.show_exact_count":  "Ð¢Ð°Ðº ÑÑ‚ÐµÐº ÑÐ°Ð½Ñ‹Ð½ ÐºÓ©Ñ€ÑÓ©Ñ‚Ò¯Ò¯",
-    "tooltip.no_stack_limit.exact_count":  "Ð¡Ñ‚ÐµÐºÑ‚ÐµÐ»Ð³ÐµÐ½ Ð±ÑƒÑŽÐ¼Ð´Ð°Ñ€: %s"
+  "key.category.no_stack_limit.controls": "Стек Чектөөсүз",
+  "key.no_stack_limit.show_exact_count": "Так стек санын көрсөтүү",
+  "tooltip.no_stack_limit.exact_count": "Стектелген Буюмдар: %s"
 }

@@ -1,5 +1,5 @@
 {
-    "key.category.no_stack_limit.controls":  "No Stack Limit",
-    "key.no_stack_limit.show_exact_count":  "Show exact stack count",
-    "tooltip.no_stack_limit.exact_count":  "Stacked Items: %s"
+  "key.category.no_stack_limit.controls": "Be Krūvos Ribo",
+  "key.no_stack_limit.show_exact_count": "Rodyti tikslų krūvos skaičių",
+  "tooltip.no_stack_limit.exact_count": "Sukrauti Daiktai: %s"
 }

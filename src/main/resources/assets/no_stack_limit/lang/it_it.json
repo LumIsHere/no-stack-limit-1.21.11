@@ -1,5 +1,5 @@
 {
-    "key.category.no_stack_limit.controls":  "No Stack Limit",
-    "key.no_stack_limit.show_exact_count":  "Show exact stack count",
-    "tooltip.no_stack_limit.exact_count":  "Stacked Items: %s"
+  "key.category.no_stack_limit.controls": "Nessun Limite di Pila",
+  "key.no_stack_limit.show_exact_count": "Mostra il numero esatto della pila",
+  "tooltip.no_stack_limit.exact_count": "Oggetti Impilati: %s"
 }

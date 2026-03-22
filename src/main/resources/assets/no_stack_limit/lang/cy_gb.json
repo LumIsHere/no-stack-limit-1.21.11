@@ -1,5 +1,5 @@
 {
-    "key.category.no_stack_limit.controls":  "No Stack Limit",
-    "key.no_stack_limit.show_exact_count":  "Show exact stack count",
-    "tooltip.no_stack_limit.exact_count":  "Stacked Items: %s"
+  "key.category.no_stack_limit.controls": "Dim Terfyn Pentyrru",
+  "key.no_stack_limit.show_exact_count": "Dangos union gyfrif y pentwr",
+  "tooltip.no_stack_limit.exact_count": "Eitemau wedi'u Pentyrru: %s"
 }
