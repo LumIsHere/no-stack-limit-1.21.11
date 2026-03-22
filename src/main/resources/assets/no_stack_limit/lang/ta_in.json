@@ -1,5 +1,5 @@
 {
-  "key.category.no_stack_limit.controls": "அடுக்கு வரம்பு இல்லை",
-  "key.no_stack_limit.show_exact_count": "சரியான அடுக்கு எண்ணிக்கையைக் காட்டு",
-  "tooltip.no_stack_limit.exact_count": "அடுக்கப்பட்ட பொருட்கள்: %s"
+    "key.category.no_stack_limit.controls":  "à®…à®Ÿà¯à®•à¯à®•à¯ à®µà®°à®®à¯à®ªà¯ à®‡à®²à¯à®²à¯ˆ",
+    "key.no_stack_limit.show_exact_count":  "à®šà®°à®¿à®¯à®¾à®© à®…à®Ÿà¯à®•à¯à®•à¯ à®Žà®£à¯à®£à®¿à®•à¯à®•à¯ˆà®¯à¯ˆà®•à¯ à®•à®¾à®Ÿà¯à®Ÿà¯",
+    "tooltip.no_stack_limit.exact_count":  "à®…à®Ÿà¯à®•à¯à®•à®ªà¯à®ªà®Ÿà¯à®Ÿ à®ªà¯Šà®°à¯à®Ÿà¯à®•à®³à¯: %s"
 }

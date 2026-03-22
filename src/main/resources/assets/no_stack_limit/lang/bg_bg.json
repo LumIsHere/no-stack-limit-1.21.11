@@ -1,0 +1,5 @@
+{
+  "key.category.no_stack_limit.controls": "Без ограничение на стака",
+  "key.no_stack_limit.show_exact_count": "Покажи точен брой в стака",
+  "tooltip.no_stack_limit.exact_count": "Предмети в стака: %s"
+}

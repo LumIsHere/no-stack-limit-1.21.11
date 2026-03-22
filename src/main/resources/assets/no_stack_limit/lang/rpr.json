@@ -1,5 +1,5 @@
 {
-  "key.category.no_stack_limit.controls": "Безъ ограниченія стопки",
-  "key.no_stack_limit.show_exact_count": "Показать точное число въ стопкѣ",
-  "tooltip.no_stack_limit.exact_count": "Предметы въ стопкѣ: %s"
+    "key.category.no_stack_limit.controls":  "Ð‘ÐµÐ·ÑŠ Ð¾Ð³Ñ€Ð°Ð½Ð¸Ñ‡ÐµÐ½Ñ–Ñ ÑÑ‚Ð¾Ð¿ÐºÐ¸",
+    "key.no_stack_limit.show_exact_count":  "ÐŸÐ¾ÐºÐ°Ð·Ð°Ñ‚ÑŒ Ñ‚Ð¾Ñ‡Ð½Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾ Ð²ÑŠ ÑÑ‚Ð¾Ð¿ÐºÑ£",
+    "tooltip.no_stack_limit.exact_count":  "ÐŸÑ€ÐµÐ´Ð¼ÐµÑ‚Ñ‹ Ð²ÑŠ ÑÑ‚Ð¾Ð¿ÐºÑ£: %s"
 }

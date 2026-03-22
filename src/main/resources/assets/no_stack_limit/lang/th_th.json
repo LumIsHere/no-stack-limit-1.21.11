@@ -1,5 +1,5 @@
 {
-  "key.category.no_stack_limit.controls": "ไม่มีข้อจำกัดการซ้อน",
-  "key.no_stack_limit.show_exact_count": "แสดงจำนวนการซ้อนที่แน่นอน",
-  "tooltip.no_stack_limit.exact_count": "ไอเท็มที่ซ้อนกัน: %s"
+    "key.category.no_stack_limit.controls":  "à¹„à¸¡à¹ˆà¸¡à¸µà¸‚à¹‰à¸­à¸ˆà¸³à¸à¸±à¸”à¸à¸²à¸£à¸‹à¹‰à¸­à¸™",
+    "key.no_stack_limit.show_exact_count":  "à¹à¸ªà¸”à¸‡à¸ˆà¸³à¸™à¸§à¸™à¸à¸²à¸£à¸‹à¹‰à¸­à¸™à¸—à¸µà¹ˆà¹à¸™à¹ˆà¸™à¸­à¸™",
+    "tooltip.no_stack_limit.exact_count":  "à¹„à¸­à¹€à¸—à¹‡à¸¡à¸—à¸µà¹ˆà¸‹à¹‰à¸­à¸™à¸à¸±à¸™: %s"
 }

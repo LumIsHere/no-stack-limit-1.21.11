@@ -1,5 +1,5 @@
 {
-  "key.category.no_stack_limit.controls": "无堆叠限制",
-  "key.no_stack_limit.show_exact_count": "显示精确堆叠数量",
-  "tooltip.no_stack_limit.exact_count": "堆叠物品: %s"
+    "key.category.no_stack_limit.controls":  "æ— å †å é™åˆ¶",
+    "key.no_stack_limit.show_exact_count":  "æ˜¾ç¤ºç²¾ç¡®å †å æ•°é‡",
+    "tooltip.no_stack_limit.exact_count":  "å †å ç‰©å“: %s"
 }

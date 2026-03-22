@@ -1,0 +1,5 @@
+{
+  "key.category.no_stack_limit.controls": "Geen Stapelperk",
+  "key.no_stack_limit.show_exact_count": "Wys presiese stapeltelling",
+  "tooltip.no_stack_limit.exact_count": "Gestapelde Items: %s"
+}
