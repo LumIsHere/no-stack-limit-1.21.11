@@ -1,21 +1,22 @@
 {
-	"required": true,
-	"package": "com.no_stack_limit.mixin",
-	"compatibilityLevel": "JAVA_21",
-	"mixins": [
-		"DataComponentTypesMixin",
-		"GiveCommandMixin",
-		"InventoryMixin",
-		"ItemStackPacketValidationMixin"
-	],
-	"client": [
-		"client.DrawContextMixin",
-		"client.HandledScreenMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
-	},
-	"overwrites": {
-		"requireAnnotations": true
+  "required": true,
+  "package": "com.no_stack_limit.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "DataComponentTypesMixin",
+    "GiveCommandMixin",
+    "InventoryMixin",
+    "CodecsMixin",
+    "ItemStackPacketValidationMixin"
+  ],
+  "client": [
+    "client.DrawContextMixin",
+    "client.HandledScreenMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
 	}
 }
