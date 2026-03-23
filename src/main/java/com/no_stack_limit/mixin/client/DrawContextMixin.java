@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(DrawContext.class)
 public abstract class DrawContextMixin {
-    private static final float NO_STACK_LIMIT$COMPACT_COUNT_SCALE = 1.5F;
+    private static final float NO_STACK_LIMIT$COMPACT_COUNT_SCALE = 0.70F;
 
     @Shadow
     public abstract void drawText(TextRenderer textRenderer, String text, int x, int y, int color, boolean shadow);
@@ -31,7 +31,7 @@ public abstract class DrawContextMixin {
         float scale = NO_STACK_LIMIT$COMPACT_COUNT_SCALE;
         float scaledWidth = textRenderer.getWidth(compactCount) * scale;
         float drawX = x + 17 - scaledWidth;
-        float drawY = y + 9;
+        float drawY = y + 10;
 
         this.getMatrices().pushMatrix();
         this.getMatrices().scale(scale, scale);
@@ -40,5 +40,3 @@ public abstract class DrawContextMixin {
         ci.cancel();
     }
 }
-
-
