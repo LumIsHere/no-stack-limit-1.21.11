@@ -1,23 +1,23 @@
 package com.no_stack_limit;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.option.KeyBinding;
-import net.minecraft.client.util.InputUtil;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.KeyMapping;
+import net.minecraft.client.Minecraft;
+import net.minecraft.resources.Identifier;
 
 public class NoStackLimitClient implements ClientModInitializer {
-    private static final Identifier KEY_CATEGORY_ID = Identifier.of(NoStackLimit.MOD_ID, "controls");
-    public static KeyBinding showExactCountKeyBinding;
+    private static final Identifier KEY_CATEGORY_ID = Identifier.fromNamespaceAndPath(NoStackLimit.MOD_ID, "controls");
+    public static KeyMapping showExactCountKeyBinding;
 
     @Override
     public void onInitializeClient() {
-        showExactCountKeyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+        showExactCountKeyBinding = KeyBindingHelper.registerKeyBinding(new KeyMapping(
                 "key.no_stack_limit.show_exact_count",
-                InputUtil.Type.KEYSYM,
-                InputUtil.GLFW_KEY_LEFT_ALT,
-                KeyBinding.Category.create(KEY_CATEGORY_ID)
+                InputConstants.Type.KEYSYM,
+                InputConstants.KEY_LALT,
+                KeyMapping.Category.register(KEY_CATEGORY_ID)
         ));
     }
 
@@ -26,18 +26,18 @@ public class NoStackLimitClient implements ClientModInitializer {
             return false;
         }
 
-        if (showExactCountKeyBinding.isPressed()) {
+        if (showExactCountKeyBinding.isDown()) {
             return true;
         }
 
-        MinecraftClient client = MinecraftClient.getInstance();
+        Minecraft client = Minecraft.getInstance();
         if (client == null || client.getWindow() == null) {
             return false;
         }
 
-        InputUtil.Key boundKey = KeyBindingHelper.getBoundKeyOf(showExactCountKeyBinding);
-        if (boundKey.getCategory() == InputUtil.Type.KEYSYM || boundKey.getCategory() == InputUtil.Type.SCANCODE) {
-            return InputUtil.isKeyPressed(client.getWindow(), boundKey.getCode());
+        InputConstants.Key boundKey = KeyBindingHelper.getBoundKeyOf(showExactCountKeyBinding);
+        if (boundKey.getType() == InputConstants.Type.KEYSYM || boundKey.getType() == InputConstants.Type.SCANCODE) {
+            return InputConstants.isKeyDown(client.getWindow(), boundKey.getValue());
         }
 
         return false;

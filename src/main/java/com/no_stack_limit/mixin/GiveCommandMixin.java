@@ -2,16 +2,16 @@ package com.no_stack_limit.mixin;
 
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import java.util.Collection;
-import net.minecraft.command.argument.ItemStackArgument;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.server.command.GiveCommand;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.arguments.item.ItemInput;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.commands.GiveCommand;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Unique;
@@ -23,62 +23,62 @@ public abstract class GiveCommandMixin {
      * @reason Avoid integer overflow in the vanilla maxStackSize * 100 limit check.
      */
     @Overwrite
-    private static int execute(ServerCommandSource source, ItemStackArgument item, Collection<ServerPlayerEntity> targets, int count) throws CommandSyntaxException {
-        ItemStack previewStack = item.createStack(1, false);
-        int maxCount = previewStack.getMaxCount();
+    private static int giveItem(CommandSourceStack source, ItemInput item, Collection<ServerPlayer> targets, int count) throws CommandSyntaxException {
+        ItemStack previewStack = item.createItemStack(1, false);
+        int maxCount = previewStack.getMaxStackSize();
         int giveLimit = noStackLimit$getGiveLimit(maxCount);
         if (count > giveLimit) {
-            source.sendError(Text.translatable("commands.give.failed.toomanyitems", giveLimit, previewStack.toHoverableText()));
+            source.sendFailure(Component.translatable("commands.give.failed.toomanyitems", giveLimit, previewStack.getDisplayName()));
             return 0;
         }
 
-        for (ServerPlayerEntity player : targets) {
+        for (ServerPlayer player : targets) {
             int remaining = count;
 
             while (remaining > 0) {
                 int stackAmount = Math.min(maxCount, remaining);
                 remaining -= stackAmount;
 
-                ItemStack givenStack = item.createStack(stackAmount, false);
-                boolean inserted = player.getInventory().insertStack(givenStack);
+                ItemStack givenStack = item.createItemStack(stackAmount, false);
+                boolean inserted = player.getInventory().add(givenStack);
                 if (!inserted || !givenStack.isEmpty()) {
-                    ItemEntity itemEntity = player.dropItem(givenStack, false);
+                    ItemEntity itemEntity = player.drop(givenStack, false);
                     if (itemEntity != null) {
-                        itemEntity.resetPickupDelay();
-                        itemEntity.setOwner(player.getUuid());
+                        itemEntity.setNoPickUpDelay();
+                        itemEntity.setTarget(player.getUUID());
                     }
                     continue;
                 }
 
-                ItemEntity itemEntity = player.dropItem(previewStack, false);
+                ItemEntity itemEntity = player.drop(previewStack, false);
                 if (itemEntity != null) {
-                    itemEntity.setDespawnImmediately();
+                    itemEntity.makeFakeItem();
                 }
 
-                player.getEntityWorld().playSound(
+                player.level().playSound(
                         null,
                         player.getX(),
                         player.getY(),
                         player.getZ(),
-                        SoundEvents.ENTITY_ITEM_PICKUP,
-                        SoundCategory.PLAYERS,
+                        SoundEvents.ITEM_PICKUP,
+                        SoundSource.PLAYERS,
                         0.2F,
                         ((player.getRandom().nextFloat() - player.getRandom().nextFloat()) * 0.7F + 1.0F) * 2.0F
                 );
-                ScreenHandler screenHandler = player.currentScreenHandler;
-                screenHandler.sendContentUpdates();
+                AbstractContainerMenu screenHandler = player.containerMenu;
+                screenHandler.broadcastChanges();
             }
         }
 
         if (targets.size() == 1) {
-            ServerPlayerEntity target = targets.iterator().next();
-            source.sendFeedback(
-                    () -> Text.translatable("commands.give.success.single", count, previewStack.toHoverableText(), target.getDisplayName()),
+            ServerPlayer target = targets.iterator().next();
+            source.sendSuccess(
+                    () -> Component.translatable("commands.give.success.single", count, previewStack.getDisplayName(), target.getDisplayName()),
                     true
             );
         } else {
-            source.sendFeedback(
-                    () -> Text.translatable("commands.give.success.multiple", count, previewStack.toHoverableText(), targets.size()),
+            source.sendSuccess(
+                    () -> Component.translatable("commands.give.success.multiple", count, previewStack.getDisplayName(), targets.size()),
                     true
             );
         }

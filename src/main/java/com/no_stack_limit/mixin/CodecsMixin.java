@@ -1,15 +1,15 @@
 package com.no_stack_limit.mixin;
 
-import net.minecraft.util.dynamic.Codecs;
+import net.minecraft.util.ExtraCodecs;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
-@Mixin(Codecs.class)
+@Mixin(ExtraCodecs.class)
 public abstract class CodecsMixin {
 
     @ModifyVariable(
-            method = "rangedInt",
+            method = "intRange",
             at = @At("HEAD"),
             ordinal = 1, // Targets the second integer argument (max)
             argsOnly = true

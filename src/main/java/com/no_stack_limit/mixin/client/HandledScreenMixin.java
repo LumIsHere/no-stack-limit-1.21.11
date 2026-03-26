@@ -2,51 +2,51 @@ package com.no_stack_limit.mixin.client;
 
 import com.no_stack_limit.TooltipHelper;
 import java.util.List;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.gui.screen.ingame.HandledScreen;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.item.ItemStack;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.screen.slot.Slot;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(HandledScreen.class)
+@Mixin(AbstractContainerScreen.class)
 public abstract class HandledScreenMixin {
     @Shadow
-    protected Slot focusedSlot;
+    protected Slot hoveredSlot;
 
     @Shadow
-    protected ScreenHandler handler;
+    protected AbstractContainerMenu menu;
 
     @Shadow
-    protected abstract List<Text> getTooltipFromItem(ItemStack stack);
+    protected abstract List<Component> getTooltipFromContainerItem(ItemStack stack);
 
     @Shadow
-    private boolean isItemTooltipSticky(ItemStack stack) {
+    private boolean showTooltipWithItemInHand(ItemStack stack) {
         throw new AssertionError();
     }
 
-    @Inject(method = "drawMouseoverTooltip", at = @At("HEAD"), cancellable = true)
-    private void noStackLimit$drawExactCountTooltip(DrawContext context, int x, int y, CallbackInfo ci) {
-        if (this.focusedSlot == null || !this.focusedSlot.hasStack()) {
+    @Inject(method = "renderTooltip", at = @At("HEAD"), cancellable = true)
+    private void noStackLimit$drawExactCountTooltip(GuiGraphics context, int x, int y, CallbackInfo ci) {
+        if (this.hoveredSlot == null || !this.hoveredSlot.hasItem()) {
             return;
         }
 
-        ItemStack stack = this.focusedSlot.getStack();
-        if (!this.handler.getCursorStack().isEmpty() && !this.isItemTooltipSticky(stack)) {
+        ItemStack stack = this.hoveredSlot.getItem();
+        if (!this.menu.getCarried().isEmpty() && !this.showTooltipWithItemInHand(stack)) {
             return;
         }
 
-        List<Text> tooltip = TooltipHelper.appendExactCount(this.getTooltipFromItem(stack), stack);
-        Identifier tooltipStyle = stack.get(DataComponentTypes.TOOLTIP_STYLE);
-        context.drawTooltip(MinecraftClient.getInstance().textRenderer, tooltip, stack.getTooltipData(), x, y, tooltipStyle);
+        List<Component> tooltip = TooltipHelper.appendExactCount(this.getTooltipFromContainerItem(stack), stack);
+        Identifier tooltipStyle = stack.get(DataComponents.TOOLTIP_STYLE);
+        context.setTooltipForNextFrame(Minecraft.getInstance().font, tooltip, stack.getTooltipImage(), x, y, tooltipStyle);
         ci.cancel();
     }
 }
