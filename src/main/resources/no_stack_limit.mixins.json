@@ -3,15 +3,14 @@
   "package": "com.no_stack_limit.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "CodecsMixin",
     "DataComponentTypesMixin",
     "GiveCommandMixin",
     "InventoryMixin",
-    "CodecsMixin",
     "ItemStackPacketValidationMixin"
   ],
   "client": [
-    "client.DrawContextMixin",
-    "client.HandledScreenMixin"
+    "client.DrawContextMixin"
   ],
   "injectors": {
     "defaultRequire": 1

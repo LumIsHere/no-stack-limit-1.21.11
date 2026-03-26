@@ -1,6 +1,8 @@
 package com.no_stack_limit.mixin;
 
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Collection;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.arguments.item.ItemInput;
@@ -24,7 +26,7 @@ public abstract class GiveCommandMixin {
      */
     @Overwrite
     private static int giveItem(CommandSourceStack source, ItemInput item, Collection<ServerPlayer> targets, int count) throws CommandSyntaxException {
-        ItemStack previewStack = item.createItemStack(1, false);
+        ItemStack previewStack = noStackLimit$createItemStack(item, 1);
         int maxCount = previewStack.getMaxStackSize();
         int giveLimit = noStackLimit$getGiveLimit(maxCount);
         if (count > giveLimit) {
@@ -39,7 +41,7 @@ public abstract class GiveCommandMixin {
                 int stackAmount = Math.min(maxCount, remaining);
                 remaining -= stackAmount;
 
-                ItemStack givenStack = item.createItemStack(stackAmount, false);
+                ItemStack givenStack = noStackLimit$createItemStack(item, stackAmount);
                 boolean inserted = player.getInventory().add(givenStack);
                 if (!inserted || !givenStack.isEmpty()) {
                     ItemEntity itemEntity = player.drop(givenStack, false);
@@ -89,5 +91,34 @@ public abstract class GiveCommandMixin {
     @Unique
     private static int noStackLimit$getGiveLimit(int maxCount) {
         return (int)Math.min((long)maxCount * 100L, Integer.MAX_VALUE);
+    }
+
+    @Unique
+    private static ItemStack noStackLimit$createItemStack(ItemInput item, int count) throws CommandSyntaxException {
+        try {
+            Method method = ItemInput.class.getMethod("createItemStack", int.class, boolean.class);
+            return (ItemStack)method.invoke(item, count, false);
+        } catch (NoSuchMethodException ignored) {
+            try {
+                Method method = ItemInput.class.getMethod("createItemStack", int.class);
+                return (ItemStack)method.invoke(item, count);
+            } catch (NoSuchMethodException | IllegalAccessException e) {
+                throw new RuntimeException("Unable to access ItemInput#createItemStack", e);
+            } catch (InvocationTargetException e) {
+                Throwable cause = e.getCause();
+                if (cause instanceof CommandSyntaxException syntaxException) {
+                    throw syntaxException;
+                }
+                throw new RuntimeException("Failed to create item stack from ItemInput", cause);
+            }
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException("Unable to access ItemInput#createItemStack", e);
+        } catch (InvocationTargetException e) {
+            Throwable cause = e.getCause();
+            if (cause instanceof CommandSyntaxException syntaxException) {
+                throw syntaxException;
+            }
+            throw new RuntimeException("Failed to create item stack from ItemInput", cause);
+        }
     }
 }
